@@ -35,7 +35,7 @@
 ## ⚙️ Как это работает
 
 1. Приложение ищет `.so`-файлы в директории:
-   /data/data/<package>/files/plugins/
+   storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins, копирует их во внутрешнее хранилище приложения.
 
 
 2. Загружает их через `dlopen`
@@ -44,8 +44,19 @@
 
 ---
 
+## ⚙️ Как это устроено
 
+```txt
+📁 storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins
+   ├── plugin1.so
+   ├── plugin2.so
+   └── ...
+   ```
 
+📌 Каждый .so должен экспортировать:
+    extern "C" void OnPluginCreate(JNIEnv* env, jobject activity);
+
+---
 
 ## ⚠️ Ограничения
 Нельзя обрабатывать нажатия кнопок напрямую из C++
