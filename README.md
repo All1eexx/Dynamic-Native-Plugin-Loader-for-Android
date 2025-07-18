@@ -58,6 +58,13 @@
 
 ---
 
+## Примеры плагинов
+
+- [**Toast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0.1/plugins/Toast_plugin)  
+  Нативный плагин для показа toast-уведомлений
+
+---
+
 ## ⚠️ Ограничения
 Нельзя обрабатывать нажатия кнопок напрямую из C++
 
