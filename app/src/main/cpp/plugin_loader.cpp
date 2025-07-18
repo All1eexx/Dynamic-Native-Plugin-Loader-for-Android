@@ -7,7 +7,7 @@
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_com_all1eexxx_dynamicnativepluginloaderforandroid_MainActivity_loadPlugin(
+Java_com_all1eexxx_dynamicnativepluginloaderforandroid_PluginManager_loadPlugin(
         JNIEnv *env, jclass, jobject context, jstring path) {
 
     const char *cpath = env->GetStringUTFChars(path, nullptr);
@@ -22,7 +22,6 @@ Java_com_all1eexxx_dynamicnativepluginloaderforandroid_MainActivity_loadPlugin(
 
     typedef void (*PluginEntry)(JNIEnv*, jobject);
     auto onCreate = (PluginEntry) dlsym(handle, "OnPluginCreate");
-    // PluginEntry onCreate = (PluginEntry) dlsym(handle, "OnPluginCreate");
 
     if (onCreate) {
         __android_log_print(ANDROID_LOG_INFO, TAG, "Found OnPluginCreate entry point in %s. Calling it now.", cpath);
