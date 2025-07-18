@@ -24,27 +24,27 @@
 
 ---
 
-## 📦 Возможности
-
-- 🔌 Загрузка `.so`-плагинов в рантайме через `dlopen`
-- ☕️ Вызов `OnPluginCreate(JNIEnv*, jobject)` из плагина
-- 📤 Расширяемость без перекомпиляции приложения
-
----
-
-## ⚙️ Как это работает
-
-1. Приложение ищет `.so`-файлы в директории:
-   storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins, копирует их во внутрешнее хранилище приложения.
-
-
-2. Загружает их через `dlopen`
-3. Ищет символ `OnPluginCreate`
-4. Вызывает его с `JNIEnv*` и `Activity context`
+## 📦 Features
+- 🔌 Runtime loading of .so plugins via dlopen
+- ☕️ Calls OnPluginCreate(JNIEnv*, jobject) from plugins
+- ✅ Enables Android UI creation from C++
+- 🧠 Uses JNI for Android UI interaction
+- 🖼️ Sample GUI plugin: TextView and Button from C++
+- 📤 Extensibility without recompiling the main app
 
 ---
 
-## ⚙️ Как это устроено
+## ⚙️ How It Works
+1. The app searches for .so files in:
+storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins
+and copies them to internal storage.
+2. Loads them via dlopen
+3. Looks for the OnPluginCreate symbol
+4. Calls it with JNIEnv* and Activity context
+
+---
+
+## ⚙️ Architecture
 
 ```txt
 📁 storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins
@@ -53,29 +53,29 @@
    └── ...
    ```
 
-📌 Каждый .so должен экспортировать:
+📌 Each .so must export:
     extern "C" void OnPluginCreate(JNIEnv* env, jobject activity);
 
 ---
 
-## 🔔 Примеры плагинов
+## 🔔 Sample Plugins
 
 - [**Toast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0.1/plugins/Toast_plugin)  
-  Нативный плагин для показа toast-уведомлений
+  Displays toast notifications
+- [**GUI_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0.2/plugins/GUI_plugin)  
+  Creates text and button UI (without click handling)
 
 ---
 
-## ⚠️ Ограничения
-Нельзя обрабатывать нажатия кнопок напрямую из C++
+## ⚠️ Limitations
+1. Button click handling cannot be done directly from C++
+2. Fixed entry point name (OnPluginCreate)
+3. All plugins run in the same process context
 
-Используется фиксированное имя точки входа (OnPluginCreate)
-
-Все плагины исполняются в контексте одного процесса
-
-## 📄 Лицензия
-Проект распространяется под лицензией MIT. Используй, исследуй, дополняй.
+## 📄 License
+MIT License. Use, explore, contribute.
 
 <div align="center">
-⭐️ Не забудь поставить звезду, если тебе понравился проект!
+⭐️ Don't forget to star if you like the project!
 
 </div> 
