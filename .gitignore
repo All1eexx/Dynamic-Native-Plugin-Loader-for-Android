@@ -46,3 +46,5 @@ fastlane/test_output
 
 # Android Profiling
 *.hprof
+
+app/release
