@@ -1,0 +1,48 @@
+# Built files
+*.apk
+*.aar
+*.ap_
+*.aab
+output-metadata.json
+
+# Gradle files
+.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Local configuration file
+local.properties
+
+# Logs
+*.log
+
+# Android Studio files
+.idea/
+*.iml
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+.navigation/
+.cache/
+
+# Keystore files
+*.jks
+*.keystore
+
+# Firebase
+google-services.json
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Other
+*.DS_Store
+*.swp
+
+# Android Profiling
+*.hprof
