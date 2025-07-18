@@ -9,4 +9,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         PluginManager.loadAllPlugins(this)
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        PluginManager.cleanupInternalPlugins(this)
+    }
+
 }
