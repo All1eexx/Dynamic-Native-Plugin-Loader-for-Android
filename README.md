@@ -31,6 +31,7 @@
 - 🧠 Uses JNI for Android UI interaction
 - 🖼️ Sample GUI plugin: TextView and Button from C++
 - 📤 Extensibility without recompiling the main app
+- 🗃️ Working with any files in the plugins folder (e.g., .json, .xml)
 
 ---
 
@@ -60,10 +61,12 @@ and copies them to internal storage.
 
 ## 🔔 Sample Plugins
 
-- [**Toast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0.1/plugins/Toast_plugin)  
+- [**Toast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0.1/plugins/Toast_plugin)  
   Displays toast notifications
-- [**GUI_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0.2/plugins/GUI_plugin)  
+- [**GUI_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0.1/plugins/GUI_plugin)  
   Creates text and button UI (without click handling)
+- [**Resource_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0.1/plugins/Resource_plugin)  
+  Plugin support for any file type
 
 ---
 
