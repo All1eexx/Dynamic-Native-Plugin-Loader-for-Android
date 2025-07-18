@@ -7,7 +7,7 @@ import java.io.IOException
 
 object PluginManager {
     private const val TAG = "PluginManager"
-    private const val INTERNAL_PLUGIN_DIR = "native_plugins"
+    private const val INTERNAL_PLUGIN_DIR = "plugins"
 
     init {
         System.loadLibrary("plugin_loader")
@@ -28,23 +28,28 @@ object PluginManager {
             }
         }
 
-        val soFiles = externalPluginDir.listFiles { _, name -> name.endsWith(".so") }
-        if (soFiles.isNullOrEmpty()) {
+        // Копируем всю структуру плагинов
+        copyPluginStructureToInternalStorage(context, externalPluginDir)
+
+        // Загружаем только .so файлы
+        val soFiles = externalPluginDir.walk()
+            .filter { it.isFile && it.extension == "so" }
+            .toList()
+
+        if (soFiles.isEmpty()) {
             Log.i(TAG, "No .so files found in ${externalPluginDir.absolutePath}")
             return
         }
 
         Log.i(TAG, "Plugins found: ${soFiles.size}")
 
-        val internalPluginDir = File(context.filesDir, INTERNAL_PLUGIN_DIR)
-        if (!internalPluginDir.exists()) {
-            internalPluginDir.mkdirs()
-        }
-
         for (file in soFiles) {
             try {
-                val internalFile = copyPluginToInternalStorage(context, file)
+                // Получаем соответствующий внутренний путь
+                val relativePath = file.relativeTo(externalPluginDir).path
+                val internalFile = File(File(context.filesDir, INTERNAL_PLUGIN_DIR), relativePath)
                 val internalPath = internalFile.absolutePath
+
                 Log.i(TAG, "Loading plugin from internal path: $internalPath")
                 val success = loadPlugin(context, internalPath)
                 if (success) {
@@ -53,32 +58,43 @@ object PluginManager {
                     Log.w(TAG, "Failed to load or entry point is missing: ${file.name}")
                 }
             } catch (e: IOException) {
-                Log.e(TAG, "Error copying plugin: ${file.name}", e)
+                Log.e(TAG, "Error processing plugin: ${file.name}", e)
             }
         }
     }
 
-    private fun copyPluginToInternalStorage(context: Context, externalFile: File): File {
+    private fun copyPluginStructureToInternalStorage(context: Context, externalDir: File) {
         val internalPluginDir = File(context.filesDir, INTERNAL_PLUGIN_DIR)
-        if (!internalPluginDir.exists()) {
-            internalPluginDir.mkdirs()
-        }
 
-        val targetFile = File(internalPluginDir, externalFile.name)
-        externalFile.copyTo(targetFile, overwrite = true)
-        return targetFile
+        // Очищаем старые плагины перед копированием
+        cleanupInternalPlugins(context)
+
+        // Копируем всю структуру рекурсивно
+        externalDir.walk().forEach { source ->
+            try {
+                val relativePath = source.relativeTo(externalDir).path
+                val dest = File(internalPluginDir, relativePath)
+
+                if (source.isDirectory) {
+                    if (!dest.exists()) {
+                        dest.mkdirs()
+                        Log.d(TAG, "Created directory: ${dest.absolutePath}")
+                    }
+                } else {
+                    source.copyTo(dest, overwrite = true)
+                    Log.d(TAG, "Copied file: ${source.name} to ${dest.absolutePath}")
+                }
+            } catch (e: IOException) {
+                Log.e(TAG, "Error copying ${source.name}", e)
+            }
+        }
     }
 
     fun cleanupInternalPlugins(context: Context) {
         val internalPluginDir = File(context.filesDir, INTERNAL_PLUGIN_DIR)
         if (internalPluginDir.exists()) {
-            val files = internalPluginDir.listFiles()
-            if (files != null) {
-                for (file in files) {
-                    val deleted = file.delete()
-                    Log.i(TAG, if (deleted) "Deleted ${file.name}" else "Failed to delete ${file.name}")
-                }
-            }
+            internalPluginDir.deleteRecursively()
+            Log.i(TAG, "Cleaned up internal plugin directory")
         }
     }
 }
