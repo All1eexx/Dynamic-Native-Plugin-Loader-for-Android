@@ -11,8 +11,8 @@ android {
         applicationId = "com.all1eexxx.dynamicnativepluginloaderforandroid"
         minSdk = 21
         targetSdk = 36
-        versionCode = 1002
-        versionName = "1.0.0.2"
+        versionCode = 1101
+        versionName = "1.1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
