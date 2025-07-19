@@ -14,6 +14,7 @@ android {
         versionCode = 1101
         versionName = "1.1.0.1"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -22,6 +23,10 @@ android {
         }
         ndk {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        }
+        androidResources {
+            @Suppress("UnstableApiUsage")
+            localeFilters.add("en")
         }
     }
 
@@ -39,8 +44,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = "21"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+        }
     }
     externalNativeBuild {
         cmake {
