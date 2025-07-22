@@ -32,6 +32,7 @@
 - 🖼️ Sample GUI plugin: TextView and Button from C++
 - 📤 Extensibility without recompiling the main app
 - 🗃️ Working with any files in the plugins folder (e.g., .json, .xml)
+- 🔐 Permissions can be requested
 
 ---
 
