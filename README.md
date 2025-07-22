@@ -32,6 +32,7 @@
 - 🖼️ Sample GUI plugin: TextView and Button from C++
 - 📤 Extensibility without recompiling the main app
 - 🗃️ Working with any files in the plugins folder (e.g., .json, .xml)
+- 🔐 Permissions can be requested
 
 ---
 
@@ -61,12 +62,14 @@ and copies them to internal storage.
 
 ## 🔔 Sample Plugins
 
-- [**Toast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0.1/plugins/Toast_plugin)  
-  Displays toast notifications
-- [**GUI_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0.1/plugins/GUI_plugin)  
-  Creates text and button UI (without click handling)
+- [**Toast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0.1/plugins/Toast_plugin)  
+  Displays toast notifications.
+- [**GUI_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0.2/plugins/GUI_plugin)  
+  Creates text and button UI (without click handling).
 - [**Resource_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0.1/plugins/Resource_plugin)  
-  Plugin support for any file type
+  Plugin support for any file type.
+- [**RequestNotificationPermission_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.2.1/plugins/RequestNotificationPermission_plugin)  
+  that plugin requests permission to send messages.
 
 ---
 
