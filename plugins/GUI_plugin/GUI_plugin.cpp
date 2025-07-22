@@ -2,11 +2,11 @@
 #include <jni.h>
 #include <android/log.h>
 
-#define TAG "GUIPlugin"
+#define TAG "GUI_Plugin"
 
 extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
 {
-  __android_log_print(ANDROID_LOG_INFO, "GUIPlugin", "OnPluginCreate: создаём UI через JNI");
+  __android_log_print(ANDROID_LOG_INFO, "GUI_Plugin", "OnPluginCreate: создаём UI через JNI");
 
   jclass activityClass = env->GetObjectClass(context);
   jmethodID findViewById = env->GetMethodID(activityClass, "findViewById", "(I)Landroid/view/View;");
@@ -64,5 +64,5 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
 
   env->CallVoidMethod(rootView, addView, linearLayout);
 
-  __android_log_print(ANDROID_LOG_INFO, "GUIPlugin", "UI с layout'ом и центровкой успешно добавлен");
+  __android_log_print(ANDROID_LOG_INFO, "GUI_Plugin", "UI с layout'ом и центровкой успешно добавлен");
 }

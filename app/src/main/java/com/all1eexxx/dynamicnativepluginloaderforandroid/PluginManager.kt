@@ -28,10 +28,8 @@ object PluginManager {
             }
         }
 
-        // Копируем всю структуру плагинов
         copyPluginStructureToInternalStorage(context, externalPluginDir)
 
-        // Загружаем только .so файлы
         val soFiles = externalPluginDir.walk()
             .filter { it.isFile && it.extension == "so" }
             .toList()
@@ -45,7 +43,6 @@ object PluginManager {
 
         for (file in soFiles) {
             try {
-                // Получаем соответствующий внутренний путь
                 val relativePath = file.relativeTo(externalPluginDir).path
                 val internalFile = File(File(context.filesDir, INTERNAL_PLUGIN_DIR), relativePath)
                 val internalPath = internalFile.absolutePath
@@ -66,10 +63,8 @@ object PluginManager {
     private fun copyPluginStructureToInternalStorage(context: Context, externalDir: File) {
         val internalPluginDir = File(context.filesDir, INTERNAL_PLUGIN_DIR)
 
-        // Очищаем старые плагины перед копированием
         cleanupInternalPlugins(context)
 
-        // Копируем всю структуру рекурсивно
         externalDir.walk().forEach { source ->
             try {
                 val relativePath = source.relativeTo(externalDir).path

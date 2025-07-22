@@ -6,7 +6,7 @@
 #include <string>
 #include <cstring>
 
-#define TAG "ResourcePlugin"
+#define TAG "Resource_Plugin"
 
 std::string getPluginDir(JNIEnv *env, jobject context)
 {
@@ -35,7 +35,6 @@ std::string readJsonFile(const std::string &path)
     return buffer.str();
 }
 
-// Примитивный парсинг JSON (только для "ключ": "значение")
 std::string extractJsonValue(const std::string &json, const std::string &key)
 {
     size_t keyPos = json.find("\"" + key + "\"");
@@ -77,7 +76,6 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
     {
         __android_log_print(ANDROID_LOG_INFO, TAG, "Сообщение из JSON: %s", message.c_str());
 
-        // Показать Toast
         jclass toastClass = env->FindClass("android/widget/Toast");
         jmethodID makeText = env->GetStaticMethodID(toastClass, "makeText",
                                                     "(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;");
