@@ -69,7 +69,7 @@ and copies them to internal storage.
 - [**Resource_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0.1/plugins/Resource_plugin)  
   Plugin support for any file type.
 - [**RequestNotificationPermission_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.2.1/plugins/RequestNotificationPermission_plugin)  
-  that plugin requests permission to send messages
+  that plugin requests permission to send messages.
 
 ---
 
