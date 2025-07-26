@@ -21,9 +21,13 @@ android {
                 cppFlags += "-std=c++26"
             }
         }
+
+        ndkVersion = "29.0.13599879"
+        
         ndk {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
         }
+
         androidResources {
             @Suppress("UnstableApiUsage")
             localeFilters.add("en")
@@ -40,28 +44,31 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
+
     kotlin {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
         }
     }
+
     externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = "4.0.3"
+            cmake {
+                path = file("src/main/cpp/CMakeLists.txt")
+                version = "4.0.3"
+            }
         }
-    }
+
     buildFeatures {
         viewBinding = true
     }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
