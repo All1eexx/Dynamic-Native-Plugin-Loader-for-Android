@@ -2,7 +2,7 @@
 
 echo Create directory Build
 
-cd /d D:\Projects\DYnamicLoadLibrariesSO\GUI_plugin
+cd /d D:\Projects\DynamicNativePluginLoaderforAndroid\plugins\SendNotification_plugin
 
 if exist build (
     echo Build directory already exists.

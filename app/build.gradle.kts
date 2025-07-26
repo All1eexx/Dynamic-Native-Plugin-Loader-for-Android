@@ -11,8 +11,8 @@ android {
         applicationId = "com.all1eexxx.dynamicnativepluginloaderforandroid"
         minSdk = 21
         targetSdk = 36
-        versionCode = 1121
-        versionName = "1.1.2.1"
+        versionCode = 1131
+        versionName = "1.1.3.1"
 
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -52,7 +52,7 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "4.0.2"
+            version = "4.0.3"
         }
     }
     buildFeatures {

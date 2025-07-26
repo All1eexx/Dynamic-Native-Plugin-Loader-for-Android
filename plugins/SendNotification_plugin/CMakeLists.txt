@@ -1,16 +1,13 @@
 cmake_minimum_required(VERSION 4.0.3)
 
-project("Resource_plugin")
+project("SendNotification_plugin")
 
-find_library(ANDROID_LIB android)
-
-add_library(Resource_plugin SHARED
-    Resource_plugin.cpp
+add_library(SendNotification_plugin SHARED
+    SendNotification_plugin.cpp
 )
 
-target_link_libraries(Resource_plugin
+target_link_libraries(SendNotification_plugin
     log
-    ${ANDROID_LIB}
 )
 
 set(NDK_PATH "D:/android-sdk/ndk/29.0.13599879")

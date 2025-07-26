@@ -2,7 +2,7 @@
 #include <jni.h>
 #include <android/log.h>
 
-#define TAG "RequestNotificationPermission"
+#define TAG "RequestNotificationPermission_plugin"
 
 static constexpr int REQUEST_CODE = 69;
 
