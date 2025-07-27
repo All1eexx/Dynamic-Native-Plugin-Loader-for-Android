@@ -6,12 +6,12 @@
 
 extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
 {
-    __android_log_print(ANDROID_LOG_INFO, TAG, "OnPluginCreate вызван");
+    __android_log_print(ANDROID_LOG_INFO, TAG, "OnPluginCreate called");
 
     jclass toastClass = env->FindClass("android/widget/Toast");
     if (!toastClass)
     {
-        __android_log_print(ANDROID_LOG_ERROR, TAG, "Toast класс не найден");
+        __android_log_print(ANDROID_LOG_ERROR, TAG, "Toast class not found");
         return;
     }
 
@@ -19,21 +19,21 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
                                                 "(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;");
     if (!makeText)
     {
-        __android_log_print(ANDROID_LOG_ERROR, TAG, "Метод makeText не найден");
+        __android_log_print(ANDROID_LOG_ERROR, TAG, "Method makeText not found");
         return;
     }
 
-    jstring text = env->NewStringUTF("Привет из плагина!");
+    jstring text = env->NewStringUTF("Hello from plugin!");
     jobject toast = env->CallStaticObjectMethod(toastClass, makeText, context, text, 0);
 
     jmethodID show = env->GetMethodID(toastClass, "show", "()V");
     if (show && toast)
     {
         env->CallVoidMethod(toast, show);
-        __android_log_print(ANDROID_LOG_INFO, TAG, "Toast показан");
+        __android_log_print(ANDROID_LOG_INFO, TAG, "Toast showed");
     }
     else
     {
-        __android_log_print(ANDROID_LOG_ERROR, TAG, "Toast не удалось показать");
+        __android_log_print(ANDROID_LOG_ERROR, TAG, "Toast failed to display");
     }
 }

@@ -6,7 +6,7 @@
 
 extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
 {
-  __android_log_print(ANDROID_LOG_INFO, "GUI_Plugin", "OnPluginCreate: создаём UI через JNI");
+  __android_log_print(ANDROID_LOG_INFO, "GUI_Plugin", "OnPluginCreate: creating UI via JNI");
 
   jclass activityClass = env->GetObjectClass(context);
   jmethodID findViewById = env->GetMethodID(activityClass, "findViewById", "(I)Landroid/view/View;");
@@ -43,7 +43,7 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
   jobject textView = env->NewObject(textViewClass, textViewCtor, context);
 
   jmethodID setText = env->GetMethodID(textViewClass, "setText", "(Ljava/lang/CharSequence;)V");
-  jstring text = env->NewStringUTF("Привет из GUI плагина!");
+  jstring text = env->NewStringUTF("Hello from GUI plugin!");
   env->CallVoidMethod(textView, setText, text);
 
   jmethodID setLayoutParams = env->GetMethodID(textViewClass, "setLayoutParams", "(Landroid/view/ViewGroup$LayoutParams;)V");
@@ -53,7 +53,7 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
   jmethodID buttonCtor = env->GetMethodID(buttonClass, "<init>", "(Landroid/content/Context;)V");
   jobject button = env->NewObject(buttonClass, buttonCtor, context);
 
-  jstring btnText = env->NewStringUTF("Нажми меня");
+  jstring btnText = env->NewStringUTF("Click me");
   env->CallVoidMethod(button, setText, btnText);
   env->CallVoidMethod(button, setLayoutParams, childLayoutParams);
 
@@ -64,5 +64,5 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
 
   env->CallVoidMethod(rootView, addView, linearLayout);
 
-  __android_log_print(ANDROID_LOG_INFO, "GUI_Plugin", "UI с layout'ом и центровкой успешно добавлен");
+  __android_log_print(ANDROID_LOG_INFO, "GUI_Plugin", "UI with layout and centering successfully added");
 }

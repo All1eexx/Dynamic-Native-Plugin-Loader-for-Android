@@ -56,17 +56,17 @@ std::string extractJsonValue(const std::string &json, const std::string &key)
 
 extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
 {
-    __android_log_print(ANDROID_LOG_INFO, TAG, "OnPluginCreate вызван");
+    __android_log_print(ANDROID_LOG_INFO, TAG, "OnPluginCreate called");
 
     std::string basePath = getPluginDir(env, context);
     std::string resPath = basePath + "/plugins/res/data.json";
 
-    __android_log_print(ANDROID_LOG_INFO, TAG, "Чтение JSON: %s", resPath.c_str());
+    __android_log_print(ANDROID_LOG_INFO, TAG, "Reading JSON: %s", resPath.c_str());
 
     std::string jsonContent = readJsonFile(resPath);
     if (jsonContent.empty())
     {
-        __android_log_print(ANDROID_LOG_ERROR, TAG, "Не удалось прочитать JSON");
+        __android_log_print(ANDROID_LOG_ERROR, TAG, "Failed to read JSON");
         return;
     }
 
@@ -74,7 +74,7 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
 
     if (!message.empty())
     {
-        __android_log_print(ANDROID_LOG_INFO, TAG, "Сообщение из JSON: %s", message.c_str());
+        __android_log_print(ANDROID_LOG_INFO, TAG, "Message from JSON: %s", message.c_str());
 
         jclass toastClass = env->FindClass("android/widget/Toast");
         jmethodID makeText = env->GetStaticMethodID(toastClass, "makeText",
@@ -87,6 +87,6 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
     }
     else
     {
-        __android_log_print(ANDROID_LOG_WARN, TAG, "Поле 'message' не найдено в JSON");
+        __android_log_print(ANDROID_LOG_WARN, TAG, "Field 'message' not found in JSON");
     }
 }
