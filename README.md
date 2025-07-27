@@ -1,5 +1,4 @@
-<div align="center">
-
+<div style="text-align: center;">
 
 # 🧩 Dynamic Native Plugin Loader for Android (.so)
 
@@ -7,7 +6,7 @@
 
 </div>
 
-<p align="center">
+<p style="text-align: center;">
   <a href="#"><img alt="License" src="https://img.shields.io/badge/LICENSE-MIT-blueviolet?style=flat-square&logo=opensourceinitiative&labelColor=282c34"></a>
   <a href="#"><img alt="Platform" src="https://img.shields.io/badge/Platform-Android-3ddc84?style=flat-square&logo=android&logoColor=white&labelColor=282c34"></a>
   <a href="#"><img alt="Language" src="https://img.shields.io/badge/C++-Native-00599C?style=flat-square&logo=c%2B%2B&logoColor=white&labelColor=282c34"></a>
@@ -15,7 +14,7 @@
   <a href="#"><img alt="JNI" src="https://img.shields.io/badge/Interface-JNI-orange?style=flat-square&logo=java&logoColor=white&labelColor=282c34"></a>
 </p>
 
-<p align="center">
+<p style="text-align: center;">
   <a href="#"><img alt="Release" src="https://img.shields.io/github/v/release/All1eexx/Dynamic-Native-Plugin-Loader-for-Android?include_prereleases&style=flat-square&color=FF6D00&logo=github&logoColor=white&labelColor=282c34"></a>
   <a href="#"><img alt="Downloads" src="https://img.shields.io/github/downloads/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/total?style=flat-square&color=4CAF50&logo=download&labelColor=282c34"></a>
   <a href="#"><img alt="Last commit" src="https://img.shields.io/github/last-commit/All1eexx/Dynamic-Native-Plugin-Loader-for-Android?style=flat-square&color=slateblue&logo=git&labelColor=282c34"></a>
@@ -70,6 +69,8 @@ and copies them to internal storage.
   Plugin support for any file type.
 - [**RequestNotificationPermission_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.2.1/plugins/RequestNotificationPermission_plugin)  
   that plugin requests permission to send messages.
+- [**SendNotification_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.3.1/plugins/SendNotification_plugin)  
+    that plugin send notification.
 
 ---
 
@@ -81,7 +82,7 @@ and copies them to internal storage.
 ## 📄 License
 MIT License. Use, explore, contribute.
 
-<div align="center">
+<div style="text-align: center;">
 ⭐️ Don't forget to star if you like the project!
 
 </div> 
