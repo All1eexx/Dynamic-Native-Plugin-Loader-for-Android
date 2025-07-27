@@ -38,6 +38,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+        getByName("debug") {
+            isJniDebuggable = true
+            renderscriptOptimLevel = 0
+        }
     }
 
     compileOptions {
