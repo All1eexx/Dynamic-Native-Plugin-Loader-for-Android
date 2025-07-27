@@ -142,7 +142,7 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
 
   jmethodID addAction = env->GetMethodID(builderClass, "addAction", "(ILjava/lang/CharSequence;Landroid/app/PendingIntent;)Landroidx/core/app/NotificationCompat$Builder;");
   jstring btnText = env->NewStringUTF("Open");
-  env->CallObjectMethod(builder, addAction, 17301504, btnText, nullptr);
+  env->CallObjectMethod(builder, addAction, 17301504, btnText, static_cast<jobject>(nullptr));
   env->DeleteLocalRef(btnText);
 
   jmethodID buildMethod = env->GetMethodID(builderClass, "build", "()Landroid/app/Notification;");
