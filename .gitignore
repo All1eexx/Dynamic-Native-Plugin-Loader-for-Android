@@ -1,5 +1,6 @@
 # Built files
 *.apk
+*.bundle
 *.aar
 *.ap_
 *.aab
