@@ -16,14 +16,9 @@ android {
 
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        externalNativeBuild {
-            cmake {
-                cppFlags += "-std=c++26"
-            }
-        }
 
         ndkVersion = "29.0.13599879"
-        
+
         ndk {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
         }
@@ -46,8 +41,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_24
+        targetCompatibility = JavaVersion.VERSION_24
     }
 
     kotlin {
@@ -57,15 +52,16 @@ android {
     }
 
     externalNativeBuild {
-            cmake {
-                path = file("src/main/cpp/CMakeLists.txt")
-                version = "4.0.3"
-            }
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
         }
+    }
 
     buildFeatures {
         viewBinding = true
     }
+    buildToolsVersion = "36.0.0"
+    ndkVersion = "29.0.13599879"
 }
 
 dependencies {
