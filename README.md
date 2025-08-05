@@ -25,6 +25,7 @@
 
 ## 📦 Features
 - 🔌 Runtime loading of .so plugins via dlopen
+- 🔌 Runtime loading of .dex plugins 
 - ☕️ Calls OnPluginCreate(JNIEnv*, jobject) from plugins
 - ✅ Enables Android UI creation from C++
 - 🧠 Uses JNI for Android UI interaction
@@ -51,11 +52,16 @@ and copies them to internal storage.
 📁 storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins
    ├── plugin1.so
    ├── plugin2.so
+   ├── plugin3.dex
+   ├── plugin4.dex
    └── ...
    ```
 
 📌 Each .so must export:
-    extern "C" void OnPluginCreate(JNIEnv* env, jobject activity);
+    extern "C" void OnPluginCreate(JNIEnv* env, jobject activity);\
+    .dex must export:
+   OnPluginCreate(Context ctx) or OnPluginCreate(ctx: Context)\
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀In java⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀In kotlin
 
 ---
 
