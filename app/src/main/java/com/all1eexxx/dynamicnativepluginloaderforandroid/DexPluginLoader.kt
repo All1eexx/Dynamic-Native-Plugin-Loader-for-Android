@@ -58,7 +58,6 @@ object DexPluginLoader {
                     try {
                         val clazz = classLoader.loadClass(className)
 
-                        // Ищем метод OnPluginCreate(Context)
                         val method = clazz.declaredMethods.find {
                             it.name == "OnPluginCreate" &&
                                     it.parameterTypes.size == 1 &&
@@ -71,7 +70,7 @@ object DexPluginLoader {
                             Log.i(TAG, "Executed OnPluginCreate from $className in ${dexFile.name}")
                             loadedPlugins.add(dexFile.name)
                             foundEntry = true
-                            break // один плагин = один entrypoint
+                            break
                         }
                     } catch (e: Exception) {
                         Log.w(TAG, "Error checking class $className", e)
