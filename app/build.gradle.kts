@@ -11,13 +11,12 @@ android {
         applicationId = "com.all1eexxx.dynamicnativepluginloaderforandroid"
         minSdk = 21
         targetSdk = 36
-        versionCode = 1131
-        versionName = "1.1.3.1"
+        versionCode = 120
+        versionName = "1.2.0"
 
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        ndkVersion = "29.0.13599879"
+        
 
         ndk {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
@@ -37,10 +36,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            isDebuggable = false
+            isJniDebuggable = false
+            renderscriptOptimLevel = 5
         }
         getByName("debug") {
             isJniDebuggable = true
             renderscriptOptimLevel = 0
+            isDebuggable = true
+            isMinifyEnabled = false
         }
     }
 
@@ -66,7 +70,7 @@ android {
         viewBinding = true
     }
     buildToolsVersion = "36.0.0"
-    ndkVersion = "29.0.13599879"
+    ndkVersion = "29.0.13846066"
 }
 
 dependencies {
