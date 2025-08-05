@@ -40,5 +40,4 @@ object SoPluginLoader {
 
         return loadedPlugins
     }
-
 }

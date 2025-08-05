@@ -85,7 +85,6 @@ object DexPluginLoader {
                 Log.e(TAG, "Failed to load dex plugin: ${dexFile.name}", e)
             }
         }
-
         return loadedPlugins
     }
 }

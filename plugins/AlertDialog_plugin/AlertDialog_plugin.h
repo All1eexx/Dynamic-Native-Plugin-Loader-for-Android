@@ -14,4 +14,4 @@ extern "C"
 }
 #endif
 
-#endif // ALERTDIALOG_PLUGIN_H
+#endif

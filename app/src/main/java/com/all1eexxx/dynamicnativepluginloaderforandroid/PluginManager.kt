@@ -46,5 +46,4 @@ object PluginManager {
 
         Log.i(TAG, "Cleaned up internal plugin contents.")
     }
-
 }

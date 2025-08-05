@@ -12,5 +12,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         PluginManager.cleanupInternalPlugins(this)
     }
-
 }
