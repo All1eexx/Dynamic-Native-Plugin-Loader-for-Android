@@ -75,6 +75,8 @@ and copies them to internal storage.
   show AlertDialog with buttons.
 - [**JavaToast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.2.0/plugins/JavaToast_plugin)  
   Displays toast notifications(Java).
+- [**KotlinToast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.2.0/plugins/JavaToast_plugin)  
+  Displays toast notifications(Kotlin).
 
 ---
 

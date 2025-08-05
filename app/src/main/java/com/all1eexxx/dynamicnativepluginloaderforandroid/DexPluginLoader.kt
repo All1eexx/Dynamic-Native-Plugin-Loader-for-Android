@@ -3,7 +3,9 @@ package com.all1eexxx.dynamicnativepluginloaderforandroid
 import android.content.Context
 import android.util.Log
 import dalvik.system.DexClassLoader
+import dalvik.system.DexFile
 import java.io.File
+import java.lang.reflect.Modifier
 
 object DexPluginLoader {
     private const val TAG = "DexPluginLoader"
@@ -43,12 +45,40 @@ object DexPluginLoader {
                     context.classLoader
                 )
 
-                val pluginClass = classLoader.loadClass("com.example.JavaToast_plugin")
-                val method = pluginClass.getDeclaredMethod("OnPluginCreate", Context::class.java)
-                method.invoke(null, context)
+                val dexFileObj = DexFile(readonlyDexFile)
+                val entries = dexFileObj.entries()
 
-                Log.i(TAG, "Executed OnPluginCreate from ${dexFile.name}")
-                loadedPlugins.add(dexFile.name)
+                var foundEntry = false
+
+                while (entries.hasMoreElements()) {
+                    val className = entries.nextElement()
+                    try {
+                        val clazz = classLoader.loadClass(className)
+
+                        // Ищем метод OnPluginCreate(Context)
+                        val method = clazz.declaredMethods.find {
+                            it.name == "OnPluginCreate" &&
+                                    it.parameterTypes.size == 1 &&
+                                    it.parameterTypes[0] == Context::class.java &&
+                                    Modifier.isStatic(it.modifiers)
+                        }
+
+                        if (method != null) {
+                            method.invoke(null, context)
+                            Log.i(TAG, "Executed OnPluginCreate from $className in ${dexFile.name}")
+                            loadedPlugins.add(dexFile.name)
+                            foundEntry = true
+                            break // один плагин = один entrypoint
+                        }
+                    } catch (e: Exception) {
+                        Log.w(TAG, "Error checking class $className", e)
+                    }
+                }
+
+                if (!foundEntry) {
+                    Log.w(TAG, "No suitable entry point found in ${dexFile.name}")
+                }
+
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load dex plugin: ${dexFile.name}", e)
             }
@@ -56,5 +86,4 @@ object DexPluginLoader {
 
         return loadedPlugins
     }
-
 }

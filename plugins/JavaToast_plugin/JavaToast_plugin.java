@@ -1,7 +1,7 @@
-package com.example;
+package com.all1eexxx;
 
-import android.content.Context;
 import android.widget.Toast;
+import android.content.Context;
 
 public class JavaToast_plugin {
   public static void OnPluginCreate(Context ctx) {
