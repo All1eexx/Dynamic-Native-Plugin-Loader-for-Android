@@ -45,7 +45,10 @@ object DexPluginLoader {
                     context.classLoader
                 )
 
-                val dexFileObj = DexFile(readonlyDexFile)
+                val optimizedDexPath = File(optimizedDir, dexFile.name + ".opt").absolutePath
+                @Suppress("DEPRECATION")
+                val dexFileObj = DexFile.loadDex(readonlyDexFile.absolutePath, optimizedDexPath, 0)
+                @Suppress("DEPRECATION")
                 val entries = dexFileObj.entries()
 
                 var foundEntry = false
