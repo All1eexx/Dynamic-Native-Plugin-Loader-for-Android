@@ -1,5 +1,5 @@
-#ifndef TOAST_PLUGIN_HPP
-#define TOAST_PLUGIN_HPP
+#ifndef CPPTOAST_PLUGIN_HPP
+#define CPPTOAST_PLUGIN_HPP
 
 #include <jni.h>
 

@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 4.0.3)
 
-project("Toast_plugin")
+project("CPPToast_plugin")
 
-add_library(Toast_plugin SHARED
-    Toast_plugin.cpp
+add_library(CPPToast_plugin SHARED
+    CPPToast_plugin.cpp
 )
 
-target_link_libraries(Toast_plugin
+target_link_libraries(CPPToast_plugin
     log
 )
 

@@ -61,8 +61,8 @@ and copies them to internal storage.
 
 ## 🔔 Sample Plugins
 
-- [**Toast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0/plugins/Toast_plugin)  
-  Displays toast notifications.
+- [**CPPToast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0/plugins/CPPToast_plugin)  
+  Displays toast notifications(C++).
 - [**GUI_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0/plugins/GUI_plugin)  
   Creates text and button UI (without click handling).
 - [**Resource_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0/plugins/Resource_plugin)  
@@ -73,6 +73,8 @@ and copies them to internal storage.
     that plugin send notification.
 - [**AlertDialog_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.2.0/plugins/AlertDialog_plugin)  
   show AlertDialog with buttons.
+- [**JavaToast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.2.0/plugins/JavaToast_plugin)  
+  Displays toast notifications(Java).
 
 ---
 

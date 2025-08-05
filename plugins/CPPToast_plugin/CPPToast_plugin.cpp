@@ -1,8 +1,8 @@
-#include "Toast_plugin.hpp"
+#include "CPPToast_plugin.hpp"
 #include <jni.h>
 #include <android/log.h>
 
-#define TAG "Toast_plugin"
+#define TAG "CPPToast_plugin"
 
 extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
 {
@@ -23,7 +23,7 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
         return;
     }
 
-    jstring text = env->NewStringUTF("Hello from Toast Plugin!");
+    jstring text = env->NewStringUTF("Hello from С++ Toast Plugin!");
     jobject toast = env->CallStaticObjectMethod(toastClass, makeText, context, text, 0);
 
     jmethodID show = env->GetMethodID(toastClass, "show", "()V");

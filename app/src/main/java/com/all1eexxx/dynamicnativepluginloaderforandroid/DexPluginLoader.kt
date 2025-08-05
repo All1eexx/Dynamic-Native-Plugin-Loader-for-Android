@@ -8,15 +8,21 @@ import java.io.File
 object DexPluginLoader {
     private const val TAG = "DexPluginLoader"
 
-    fun loadAllDexPlugins(context: Context) {
-        val internalPluginDir = File(context.filesDir, "plugins")
-        val dexFiles = internalPluginDir.walkTopDown()
-            .filter { it.isFile && it.extension == "dex" }
+    fun loadAllDexPlugins(context: Context): List<String> {
+        val sourceDexDir = File(context.getExternalFilesDir(null), "plugins")
+        val internalDexDir = File(context.codeCacheDir, "plugins")
+
+        TreeCopier.copyPreservingStructure(sourceDexDir, internalDexDir)
+
+        val dexFiles = internalDexDir.walkTopDown()
+            .filter { it.isFile && it.name.endsWith(".dex") }
             .toList()
+
+        val loadedPlugins = mutableListOf<String>()
 
         if (dexFiles.isEmpty()) {
             Log.i(TAG, "No .dex plugins found.")
-            return
+            return loadedPlugins
         }
 
         val optimizedDir = File(context.codeCacheDir, "dex_opt")
@@ -26,21 +32,29 @@ object DexPluginLoader {
 
         for (dexFile in dexFiles) {
             try {
+                val readonlyDexFile = File(context.codeCacheDir, dexFile.name)
+                dexFile.copyTo(readonlyDexFile, overwrite = true)
+                readonlyDexFile.setReadOnly()
+
                 val classLoader = DexClassLoader(
-                    dexFile.absolutePath,
+                    readonlyDexFile.absolutePath,
                     optimizedDir.absolutePath,
                     null,
                     context.classLoader
                 )
 
-                val pluginClass = classLoader.loadClass("OnPluginCreate")
-                val method = pluginClass.getDeclaredMethod("invoke", Context::class.java)
+                val pluginClass = classLoader.loadClass("com.example.JavaToast_plugin")
+                val method = pluginClass.getDeclaredMethod("OnPluginCreate", Context::class.java)
                 method.invoke(null, context)
 
                 Log.i(TAG, "Executed OnPluginCreate from ${dexFile.name}")
+                loadedPlugins.add(dexFile.name)
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load dex plugin: ${dexFile.name}", e)
             }
         }
+
+        return loadedPlugins
     }
+
 }
