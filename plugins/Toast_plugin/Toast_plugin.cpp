@@ -23,7 +23,7 @@ extern "C" void OnPluginCreate(JNIEnv *env, jobject context)
         return;
     }
 
-    jstring text = env->NewStringUTF("Hello from plugin!");
+    jstring text = env->NewStringUTF("Hello from Toast Plugin!");
     jobject toast = env->CallStaticObjectMethod(toastClass, makeText, context, text, 0);
 
     jmethodID show = env->GetMethodID(toastClass, "show", "()V");

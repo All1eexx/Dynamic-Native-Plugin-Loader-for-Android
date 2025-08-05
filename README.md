@@ -61,16 +61,18 @@ and copies them to internal storage.
 
 ## 🔔 Sample Plugins
 
-- [**Toast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0.1/plugins/Toast_plugin)  
+- [**Toast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0/plugins/Toast_plugin)  
   Displays toast notifications.
-- [**GUI_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0.2/plugins/GUI_plugin)  
+- [**GUI_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0/plugins/GUI_plugin)  
   Creates text and button UI (without click handling).
-- [**Resource_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0.1/plugins/Resource_plugin)  
+- [**Resource_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0/plugins/Resource_plugin)  
   Plugin support for any file type.
-- [**RequestNotificationPermission_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.2.1/plugins/RequestNotificationPermission_plugin)  
+- [**RequestNotificationPermission_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.2/plugins/RequestNotificationPermission_plugin)  
   that plugin requests permission to send messages.
-- [**SendNotification_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.3.1/plugins/SendNotification_plugin)  
+- [**SendNotification_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.3/plugins/SendNotification_plugin)  
     that plugin send notification.
+- [**AlertDialog_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.2.0/plugins/AlertDialog_plugin)  
+  show AlertDialog with buttons.
 
 ---
 
