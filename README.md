@@ -37,12 +37,22 @@
 ---
 
 ## ⚙️ How It Works
+### .so
 1. The app searches for .so files in:
 storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins
 and copies them to internal storage.
 2. Loads them via dlopen
 3. Looks for the OnPluginCreate symbol
 4. Calls it with JNIEnv* and Activity context
+### .dex
+1. The app searches for .dex files in:
+   storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins
+   and copies them to internal storage (for example, to codeCacheDir/plugins).
+2. For each .dex file, a DexClassLoader is created, specifying the path to the file, an optimized directory for the output, and the parent class loader.
+3. Using DexFile or the DexClassLoader, the app enumerates all classes inside the .dex file.
+4. For each class, it looks for a static method with the signature:
+OnPluginCreate(Context ctx).
+5. If such a method is found, it is invoked with the current Android context.
 
 ---
 
