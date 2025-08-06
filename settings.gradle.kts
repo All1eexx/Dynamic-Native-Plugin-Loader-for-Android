@@ -20,5 +20,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Dynamic Native Plugin Loader for Android"
+rootProject.name = "PlugiX"
 include(":app")
