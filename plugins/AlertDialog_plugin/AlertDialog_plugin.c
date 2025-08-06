@@ -17,7 +17,7 @@ void ShowAlertDialog(JNIEnv *env, jobject context, const char *title, const char
   jclass builderClass = (*env)->FindClass(env, "android/app/AlertDialog$Builder");
   if (!builderClass)
   {
-    LOGE("Failed to find AlertDialog.Builder class");
+    LOGE("Failed to find AlertDialog.Builder class.");
     (*env)->DeleteLocalRef(env, activityClass);
     return;
   }
