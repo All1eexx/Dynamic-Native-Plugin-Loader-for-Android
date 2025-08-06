@@ -1,4 +1,4 @@
-package com.all1eexxx.dynamicnativepluginloaderforandroid
+package com.all1eexxx.plugix
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

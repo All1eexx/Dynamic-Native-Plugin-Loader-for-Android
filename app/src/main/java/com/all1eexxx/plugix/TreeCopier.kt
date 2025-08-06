@@ -1,4 +1,4 @@
-package com.all1eexxx.dynamicnativepluginloaderforandroid
+package com.all1eexxx.plugix
 
 import android.util.Log
 import java.io.File

@@ -1,52 +1,55 @@
 <div style="text-align: center;">
 
-# 🧩 Dynamic Native Plugin Loader for Android (.so)
+# 🧩 PlugiX 🧩
 
-![Native Plugin System](https://img.shields.io/badge/Native_Plugin_Loader-3ddc84?style=for-the-badge&logo=android&logoColor=white&color=121212&labelColor=3ddc84)
+![Android Plugin System](https://img.shields.io/badge/Android_Plugin_Loader-3ddc84?style=for-the-badge&logo=android&logoColor=white&color=121212&labelColor=3ddc84)
 
 </div>
 
 <p style="text-align: center;">
   <a href="#"><img alt="License" src="https://img.shields.io/badge/LICENSE-MIT-blueviolet?style=flat-square&logo=opensourceinitiative&labelColor=282c34"></a>
   <a href="#"><img alt="Platform" src="https://img.shields.io/badge/Platform-Android-3ddc84?style=flat-square&logo=android&logoColor=white&labelColor=282c34"></a>
-  <a href="#"><img alt="Language" src="https://img.shields.io/badge/C++-Native-00599C?style=flat-square&logo=c%2B%2B&logoColor=white&labelColor=282c34"></a>
   <a href="#"><img alt="Min API" src="https://img.shields.io/badge/API-21+-00B0FF?style=flat-square&logo=android-studio&logoColor=white&labelColor=282c34"></a>
-  <a href="#"><img alt="JNI" src="https://img.shields.io/badge/Interface-JNI-orange?style=flat-square&logo=java&logoColor=white&labelColor=282c34"></a>
 </p>
 
 <p style="text-align: center;">
-  <a href="#"><img alt="Release" src="https://img.shields.io/github/v/release/All1eexx/Dynamic-Native-Plugin-Loader-for-Android?include_prereleases&style=flat-square&color=FF6D00&logo=github&logoColor=white&labelColor=282c34"></a>
-  <a href="#"><img alt="Downloads" src="https://img.shields.io/github/downloads/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/total?style=flat-square&color=4CAF50&logo=download&labelColor=282c34"></a>
-  <a href="#"><img alt="Last commit" src="https://img.shields.io/github/last-commit/All1eexx/Dynamic-Native-Plugin-Loader-for-Android?style=flat-square&color=slateblue&logo=git&labelColor=282c34"></a>
-  <a href="#"><img alt="Stars" src="https://img.shields.io/github/stars/All1eexx/Dynamic-Native-Plugin-Loader-for-Android?style=flat-square&color=FFD700&logo=star&labelColor=282c34"></a>
+  <a href="#"><img alt="Release" src="https://img.shields.io/github/v/release/All1eexx/PlugiX-For-Android?include_prereleases&style=flat-square&color=FF6D00&logo=github&logoColor=white&labelColor=282c34"></a>
+  <a href="#"><img alt="Downloads" src="https://img.shields.io/github/downloads/All1eexx/PlugiX-For-Android/total?style=flat-square&color=4CAF50&logo=download&labelColor=282c34"></a>
+  <a href="#"><img alt="Last commit" src="https://img.shields.io/github/last-commit/All1eexx/PlugiX-For-Android?style=flat-square&color=slateblue&logo=git&labelColor=282c34"></a>
+  <a href="#"><img alt="Stars" src="https://img.shields.io/github/stars/All1eexx/PlugiX-For-Android?style=flat-square&color=FFD700&logo=star&labelColor=282c34"></a>
+  <a href="#"><img alt="Forks" src="https://img.shields.io/github/forks/All1eexx/PlugiX-For-Android?style=flat-square&color=29B6F6&logo=code-fork&labelColor=282c34"></a>
+
 </p>
 
 ---
 
 ## 📦 Features
-- 🔌 Runtime loading of .so plugins via dlopen
-- 🔌 Runtime loading of .dex plugins 
-- ☕️ Calls OnPluginCreate(JNIEnv*, jobject) from plugins
-- ✅ Enables Android UI creation from C++
-- 🧠 Uses JNI for Android UI interaction
-- 🖼️ Sample GUI plugin: TextView and Button from C++
-- 📤 Extensibility without recompiling the main app
-- 🗃️ Working with any files in the plugins folder (e.g., .json, .xml)
-- 🔐 Permissions can be requested
+- **Multi-language plugin support**:
+    - 🔌 Native: `.so` (C/C++) via `dlopen`
+    - ☕️ Java/Kotlin: `.dex` via `DexClassLoader`
+- 🚀 Unified entry points:
+    - `OnPluginCreate(JNIEnv*, jobject)` for native plugins
+    - `OnPluginCreate(Context)` for Java/Kotlin plugins
+- 🖼️ UI integration:
+    - Android views from C++ via JNI
+    - Direct XML inflation from Java/Kotlin
+- 🔄 Dynamic updates:
+    - No recompilation needed
+    - Hot-plugging from external storage
 
 ---
 
-## ⚙️ How It Works
-### .so
+## ⚙️ Plugin Architecture
+### For Native (.so) Plugins
 1. The app searches for .so files in:
-storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins
+storage/emulated/0/Android/data/com.all1eexxx.plugix/files/plugins
 and copies them to internal storage.
 2. Loads them via dlopen
 3. Looks for the OnPluginCreate symbol
 4. Calls it with JNIEnv* and Activity context
-### .dex
+### For Java/Kotlin (.dex) Plugins
 1. The app searches for .dex files in:
-   storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins
+   storage/emulated/0/Android/data/com.all1eexxx.plugix/files/plugins
    and copies them to internal storage (for example, to codeCacheDir/plugins).
 2. For each .dex file, a DexClassLoader is created, specifying the path to the file, an optimized directory for the output, and the parent class loader.
 3. Using DexFile or the DexClassLoader, the app enumerates all classes inside the .dex file.
@@ -59,52 +62,51 @@ OnPluginCreate(Context ctx).
 ## ⚙️ Architecture
 
 ```txt
-📁 storage/emulated/0/Android/data/com.all1eexxx.dynamicnativepluginloaderforandroid/files/plugins
-   ├── plugin1.so
-   ├── plugin2.so
-   ├── plugin3.dex
-   ├── plugin4.dex
+📁 storage/emulated/0/Android/data/com.all1eexxx.plugix/files/plugins
+   ├── native_module.so    # C/C++ plugin
+   ├── java_plugin.dex     # Java compiled plugin
+   ├── kt_plugin.dex       # Kotlin compiled plugin
    └── ...
    ```
 
-📌 Each .so must export:
-    extern "C" void OnPluginCreate(JNIEnv* env, jobject activity);\
-    .dex must export:
-   OnPluginCreate(Context ctx) or OnPluginCreate(ctx: Context)\
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀In java⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀In kotlin
-
+✅ Native Plugin must export:
+```cpp
+extern "C" void OnPluginCreate(JNIEnv* env, jobject activity);
+```
+✅ Java/Kotlin Plugin must define:
+```Java
+public static void OnPluginCreate(Context ctx) {}
+```
 ---
 
 ## 🔔 Sample Plugins
 
-- [**CPPToast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0/plugins/CPPToast_plugin)  
-  Displays toast notifications(C++).
-- [**GUI_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.0.0/plugins/GUI_plugin)  
-  Creates text and button UI (without click handling).
-- [**Resource_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.0/plugins/Resource_plugin)  
-  Plugin support for any file type.
-- [**RequestNotificationPermission_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.2/plugins/RequestNotificationPermission_plugin)  
-  that plugin requests permission to send messages.
-- [**SendNotification_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.1.3/plugins/SendNotification_plugin)  
-    that plugin send notification.
-- [**AlertDialog_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.2.0/plugins/AlertDialog_plugin)  
-  show AlertDialog with buttons.
-- [**JavaToast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.2.0/plugins/JavaToast_plugin)  
-  Displays toast notifications(Java).
-- [**KotlinToast_plugin**](https://github.com/All1eexx/Dynamic-Native-Plugin-Loader-for-Android/tree/1.2.0/plugins/JavaToast_plugin)  
-  Displays toast notifications(Kotlin).
+## 🔌 Sample Plugins
+
+| Type            | Plugin                                                                                                                                         | Description                           | Version |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------|---------|
+| **Native(С++)** | [CPPToast_plugin](https://github.com/All1eexx/PlugiX-For-Android/tree/1.0.0/plugins/CPPToast_plugin)                                           | Displays Toast from C++               | 1.0.0   |
+| **Native(С++)** | [GUI_plugin](https://github.com/All1eexx/PlugiX-For-Android/tree/1.0.0/plugins/GUI_plugin)                                                     | Creates UI elements (TextView/Button) | 1.0.0   |
+| **Native(С)**   | [AlertDialog_plugin](https://github.com/All1eexx/PlugiX-For-Android/tree/1.2.0/plugins/AlertDialog_plugin)                                     | Shows native AlertDialog              | 1.2.0   |
+| **Java**        | [JavaToast_plugin](https://github.com/All1eexx/PlugiX-For-Android/tree/1.2.0/plugins/JavaToast_plugin)                                         | Toast notifications in Java           | 1.2.0   |
+| **Kotlin**      | [KotlinToast_plugin](https://github.com/All1eexx/PlugiX-For-Android/tree/1.2.0/plugins/KotlinToast_plugin)                                     | Toast notifications in Kotlin         | 1.2.0   |
+| **Native(С++)** | [Resource_plugin](https://github.com/All1eexx/PlugiX-For-Android/tree/1.1.0/plugins/Resource_plugin)                                           | File type support                     | 1.1.0   |
+| **Native(С++)** | [RequestNotificationPermission_plugin](https://github.com/All1eexx/PlugiX-For-Android/tree/1.1.2/plugins/RequestNotificationPermission_plugin) | Handles runtime permissions           | 1.1.2   |
+| **Native(С++)** | [SendNotification_plugin](https://github.com/All1eexx/PlugiX-For-Android/tree/1.1.3/plugins/SendNotification_plugin)                           | System notifications                  | 1.1.3   |
 
 ---
 
-## ⚠️ Limitations
-1. Button click handling cannot be done directly from C++
-2. Fixed entry point name (OnPluginCreate)
-3. All plugins run in the same process context
+## 🔧 Technical Notes
+1. Entry Points:
+   - Native: Must export OnPluginCreate with JNI params
+   - Java/Kotlin: Static method with Context parameter
+2. UI Limitations:
+   - Native: Event handling requires JNI callbacks
+   -  Java/Kotlin: Full Android UI capabilities
+3. Security:
+   - Plugins execute in host app's context
 
 ## 📄 License
 MIT License. Use, explore, contribute.
 
-<div style="text-align: center;">
-⭐️ Don't forget to star if you like the project!
-
-</div> 
+<div style="text-align: center; margin-top: 2rem;"> ⭐ Found this useful? Star the repo to support development! </div> 
