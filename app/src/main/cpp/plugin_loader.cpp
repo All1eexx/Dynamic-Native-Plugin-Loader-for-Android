@@ -7,7 +7,7 @@
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_com_all1eexxx_dynamicnativepluginloaderforandroid_SoPluginLoader_loadPlugin(
+Java_com_all1eexxx_plugix_SoPluginLoader_loadPlugin(
         JNIEnv *env, jclass, jobject context, jstring path) {
 
     const char *cpath = env->GetStringUTFChars(path, nullptr);
